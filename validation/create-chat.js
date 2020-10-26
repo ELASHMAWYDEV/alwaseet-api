@@ -1,4 +1,4 @@
-module.exports = async ({ title, userOne, userTwo, time }) => {
+module.exports = async ({ title, userOne, userTwo, endTime }) => {
   try {
     let errors = [];
 
@@ -6,7 +6,7 @@ module.exports = async ({ title, userOne, userTwo, time }) => {
     if (!title) errors.push("يجب كتابة عنوان المحادثة");
     if (!userOne) errors.push("يجب كتابة اسم المستخدم الأول");
     if (!userTwo) errors.push("يجب كتابة اسم المستخدم الثاني");
-    if (!time) errors.push("يجب تحديد مدة المحادثة");
+    if (!endTime) errors.push("يجب تحديد مدة المحادثة");
 
     if (errors.length != 0) {
       return {
@@ -21,7 +21,7 @@ module.exports = async ({ title, userOne, userTwo, time }) => {
         title,
         userOne,
         userTwo,
-        time
+        endTime
       }
     };
   } catch (e) {

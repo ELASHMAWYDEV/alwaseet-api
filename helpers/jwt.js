@@ -51,9 +51,8 @@ module.exports = {
       const chatUser = await jwt.verify(token, ACCESS_TOKEN);
 
       //check DB existence
-      const searchUser = await db("chats").findOne({
-        $or: [{ userOneId: chatUser._id }, { userTwoId: chatUser._id }],
-      });
+      const searchUser = await db("chats").findOne({ _id: chatUser.chatId }
+      );
 
       if (searchUser) {
         req.chatUser = searchUser;

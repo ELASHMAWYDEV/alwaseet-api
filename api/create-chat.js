@@ -36,8 +36,8 @@ router.post("/", checkToken, async (req, res) => {
     let chat = {
       ...validateChat.chat,
       chatNumber,
-      hashedUserOnePassword,
-      hashedUserTwoPassword,
+      userOnePassword: hashedUserOnePassword,
+      userTwoPassword: hashedUserTwoPassword,
       userId: mongoose.Types.ObjectId(req.user._id),
     };
 

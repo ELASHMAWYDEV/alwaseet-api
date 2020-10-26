@@ -17,22 +17,22 @@ router.post("/", checkChatUser, async (req, res) => {
 
     //Validation
     const validateUser = await validation(req.body);
-    return res.json(validateUser);
-    // if (!validateUser.success) {
-    //   return res.json(validateUser);
-    // }
+    if (!validateUser.success) {
+      return res.json(validateUser);
+    }
 
 
-    // //Create the accessToken
-    // const accessToken = await createToken({ _id: validateUser.user._id });
 
-    // //Send the jwt token with the success response
-    // return res.json({
-    //   success: true,
-    //   messages: ["تم تسجيل الدخول بنجاح"],
-    //   user: validateUser.user,
-    //   accessToken,
-    // });
+    //Create the accessToken
+    const accessToken = await createToken({ chatId: validateUser.chatUser._id });
+
+    //Send the jwt token with the success response
+    return res.json({
+      success: true,
+      messages: ["تم تسجيل الدخول بنجاح"],
+      user: validateUser.chatUser,
+      accessToken,
+    });
   } catch (e) {
     res.json({
       success: false,
