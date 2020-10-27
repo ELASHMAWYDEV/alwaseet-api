@@ -29,15 +29,15 @@ router.post("/", checkToken, async (req, res) => {
     let userTwoPassword = Math.floor(Math.random() * 1000000000).toString();
 
     //Encrypt passwords
-    let hashedUserOnePassword = await bcrypt.hash(userOnePassword, 10);
-    let hashedUserTwoPassword = await bcrypt.hash(userTwoPassword, 10);
+    // let hashedUserOnePassword = await bcrypt.hash(userOnePassword, 10);
+    // let hashedUserTwoPassword = await bcrypt.hash(userTwoPassword, 10);
 
     //Create the chat Object
     let chat = {
       ...validateChat.chat,
       chatNumber,
-      userOnePassword: hashedUserOnePassword,
-      userTwoPassword: hashedUserTwoPassword,
+      userOnePassword,
+      userTwoPassword,
       userId: mongoose.Types.ObjectId(req.user._id),
     };
 

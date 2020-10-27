@@ -35,8 +35,11 @@ module.exports = async ({ chatNumber, password }) => {
     }
 
     //Password Match
-    let userOne = await bcrypt.compare(password, userSearch.userOnePassword);
-    let userTwo = await bcrypt.compare(password, userSearch.userTwoPassword);
+    // let userOne = await bcrypt.compare(password, userSearch.userOnePassword);
+    // let userTwo = await bcrypt.compare(password, userSearch.userTwoPassword);
+    let userOne = password == userSearch.userOnePassword;
+    let userTwo = password == userSearch.userTwoPassword;
+
 
     if (!(userOne || userTwo)) {
       errors.push("كلمة المرور التي أدخلتها غير صحيحة");
